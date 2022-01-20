@@ -46,7 +46,8 @@
    kinematics_parameters_file
    physical_parameters_file
    visual_parameters_file
-   transmission_hw_interface:=hardware_interface/PositionJointInterface
+   transmission_hw_interface_1:=hardware_interface/PositionJointInterface
+   transmission_hw_interface_2:=hardware_interface/VelocityJointInterface
    safety_limits:=false safety_pos_margin:=0.15 safety_k_position:=20"
   >
     <!--
@@ -66,7 +67,8 @@
       kinematics_parameters_file="${kinematics_parameters_file}"
       physical_parameters_file="${physical_parameters_file}"
       visual_parameters_file="${visual_parameters_file}"
-      transmission_hw_interface="${transmission_hw_interface}"
+      hw_interface_1="${transmission_hw_interface_1}"
+      interface_2="${transmission_hw_interface_2}"
       safety_limits="${safety_limits}"
       safety_pos_margin="${safety_pos_margin}"
       safety_k_position="${safety_k_position}"
@@ -75,24 +77,31 @@
     <!-- Configure self collision properties per link -->
     <gazebo reference="${prefix}shoulder_link">
       <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
     </gazebo>
     <gazebo reference="${prefix}upper_arm_link">
       <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
     </gazebo>
     <gazebo reference="${prefix}forearm_link">
       <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
     </gazebo>
     <gazebo reference="${prefix}wrist_1_link">
       <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
     </gazebo>
     <gazebo reference="${prefix}wrist_3_link">
       <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
     </gazebo>
     <gazebo reference="${prefix}wrist_2_link">
       <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
     </gazebo>
     <gazebo reference="${prefix}ee_link">
       <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
     </gazebo>
 
     <!--
@@ -100,9 +109,10 @@
       controllers to control the virtual robot hw.
     -->
     <gazebo>
-      <plugin name="ros_control" filename="libgazebo_ros_control.so">
+      <plugin name="cob_gazebo_ros_control" filename="libhwi_switch_gazebo_ros_control.so">
         <!--robotNamespace>/</robotNamespace-->
         <!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
+        <robotSimType>cob_gazebo_ros_control/HWISwitchRobotHWSim</robotSimType>
       </plugin>
     </gazebo>
   </xacro:macro>
