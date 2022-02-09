@@ -58,7 +58,6 @@
     kinematics_parameters_file="$(arg kinematics_params)"
     physical_parameters_file="$(arg physical_params)"
     visual_parameters_file="$(arg visual_params)"
-    transmission_hw_interface="$(arg transmission_hw_interface)"
     transmission_hw_interface_1="$(arg transmission_hw_interface_1)"
     transmission_hw_interface_2="$(arg transmission_hw_interface_2)"
     safety_limits="$(arg safety_limits)"
